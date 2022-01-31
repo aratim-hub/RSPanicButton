@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_margin="25dp"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/vicon"/>
+
+    <TextView
+        android:id="@+id/lblRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgLogo"
+        android:fontFamily="@font/ubuntu_bold"
+        android:gravity="center"
+        android:textColor="@color/font_color"
+        android:layout_centerHorizontal="true"
+        android:text="V Help"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+    <RelativeLayout
+        android:id="@+id/layout1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lblRegister"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/imgUser"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_user" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/imgUser"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:singleLine="true"
+                android:textColor="@color/font_color"
+                android:fontFamily="@font/font_bureau_interstate_regular"
+                android:inputType="textCapWords"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/layout1">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/imgCall"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_call" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_centerVertical="true"
+            android:id="@+id/layoutMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/imgCall"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile No."
+                android:maxLength="10"
+                android:textColorHint="@color/font_color"
+                android:textColor="@color/font_color"
+                android:autofillHints="phone"
+                android:fontFamily="@font/font_bureau_interstate_regular"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/lblOccupation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_bold"
+        android:gravity="center"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/font_color"
+        android:layout_centerHorizontal="true"
+        android:text="Select Your Occupation"
+        android:layout_below="@+id/layout2" />
+
+    <RelativeLayout
+        android:id="@+id/layout3"
+        android:layout_below="@+id/lblOccupation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/imgOccupation"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_occupation" />
+
+    <Spinner
+        android:id="@+id/spinnerOccupation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/occupation"
+        android:padding="20dp"
+        android:theme="@style/SpinnerTheme"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
+
+    </RelativeLayout>
+
+
+    <ProgressBar
+        android:layout_marginTop="30dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:background="@drawable/custom_button_green"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:fontFamily="@font/font_bureau_interstate_regular"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_below="@+id/layout3"
+        android:layout_centerHorizontal="true"
+        android:text="Register" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/textViewAlreadyRegister"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:text="Saya sudah registrasi"
+        android:fontFamily="@font/font_bureau_interstate_regular"
+        android:gravity="center"/>
+
+</RelativeLayout>

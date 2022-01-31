@@ -1,0 +1,3 @@
+include ':floating-bubble'
+rootProject.name='RS Panic Button'
+include ':app'

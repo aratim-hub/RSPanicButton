@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblHeader"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="@string/app_name"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblOccupation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:textColor="@color/font_color"
+                android:text="Set Relationship"
+                android:layout_alignParentTop="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinnerKeluhan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/relationship"
+                android:padding="10dp"
+                android:fontFamily="@font/font_bureau_interstate_regular"
+                android:theme="@style/SpinnerTheme"
+                android:layout_below="@+id/lblOccupation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblOccupation"/>
+
+            <RelativeLayout
+                android:id="@+id/layout1"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/imgUser"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_user" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/imgUser"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name"
+                        android:singleLine="true"
+                        android:textColor="@color/font_color"
+                        android:fontFamily="@font/font_bureau_interstate_regular"
+                        android:inputType="textCapWords"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/lblPreferences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:textColor="@color/font_color"
+                android:text="Set Preferences"
+                android:layout_below="@+id/spinnerKeluhan"
+                app:layout_constraintBottom_toTopOf="@+id/layoutPreferences"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:id="@+id/layoutPreferences"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/lblPreferences"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblPreferences">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/chkCall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Call"
+                    android:fontFamily="@font/font_bureau_interstate_regular"
+                    android:layout_centerVertical="true"/>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/chkSms"
+                    android:layout_marginStart="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/chkCall"
+                    android:text="SMS"
+                    android:fontFamily="@font/font_bureau_interstate_regular"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="16dp"
+                android:id="@+id/deleteLayout"
+                android:layout_below="@+id/layoutPreferences"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/delete"
+                    android:id="@+id/imgDelete"/>
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@+id/imgDelete"
+                    android:id="@+id/lblDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:textColor="@color/font_color"
+                    android:text="Delete this contact" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Add To List"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/font_bureau_interstate_regular"
+                android:textAllCaps="false"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/custom_button_green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutPreferences"/>
+
+            <ImageView
+                android:id="@+id/imgClose"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/cancel"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

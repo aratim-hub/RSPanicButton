@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "81582116421",
+    "project_id": "v-help-a8b7a",
+    "storage_bucket": "v-help-a8b7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81582116421:android:28c5b5715f59454b2a9d2c",
+        "android_client_info": {
+          "package_name": "com.theappwelt.vhelp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81582116421-k4eja98ru1nsll0psg3bcb0p3hv6vj7v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9Aj8jGwou8XcXkwmgtGUZ2aANhkqu__k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81582116421-k4eja98ru1nsll0psg3bcb0p3hv6vj7v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

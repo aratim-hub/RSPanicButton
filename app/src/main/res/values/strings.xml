@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">V Help</string>
+    <string name="title_contact">Contacts</string>
+    <string name="contact_favorite">\u2606</string>
+    <string name="msg_wait">Please Wait...</string>
+
+    <string-array name="relationship">
+        <item>Mother</item>
+        <item>Father</item>
+        <item>Son</item>
+        <item>Daughter</item>
+        <item>Brother</item>
+        <item>Sister</item>
+        <item>Cousin</item>
+    </string-array>
+
+    <string-array name="occupation">
+        <item>Select Work Profile</item>
+        <item>I am a Business Owner</item>
+        <item>I am an Employee</item>
+    </string-array>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+</resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:layout_margin="0dp"
+        tools:context=".MainActivity">
+
+    <LinearLayout
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+        android:background="@color/colorPrimary"
+    android:orientation="horizontal">
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imgLogo"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerHorizontal="false"-->
+<!--        android:src="@drawable/vicon"/>-->
+
+    <TextView
+        android:id="@+id/lblHeader"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/app_name"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:textAppearance="?android:textAppearanceLarge" />
+
+<!--    <Button-->
+<!--        android:id="@+id/buttonAdd"-->
+<!--        android:layout_gravity="end"-->
+<!--        android:background="@color/colorPrimary"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:textColor="#ffffff"-->
+<!--        android:fontFamily="@font/font_bureau_interstate_regular"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textSize="40dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:text="+" />-->
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:layout_width="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contactList"
+            android:layout_width="match_parent"
+            android:layout_height="641dp"
+            android:layout_margin="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonFloatingAdd"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/add">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+</RelativeLayout>

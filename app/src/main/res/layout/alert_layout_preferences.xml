@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/lblPreferences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_bold"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/font_color"
+        android:text="Set Preferences"
+        app:layout_constraintBottom_toTopOf="@+id/layoutPreferences"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/layoutPreferences"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/lblPreferences">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/chkCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Call"
+            android:fontFamily="@font/font_bureau_interstate_regular"
+            android:layout_centerVertical="true"/>
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/chkSms"
+            android:layout_marginStart="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/chkCall"
+            android:text="SMS"
+            android:fontFamily="@font/font_bureau_interstate_regular"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/font_bureau_interstate_regular"
+        android:textAllCaps="false"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@+id/layoutPreferences"
+        android:background="@drawable/custom_button_green"/>
+
+</RelativeLayout>
