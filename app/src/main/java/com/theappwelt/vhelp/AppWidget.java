@@ -19,6 +19,7 @@ import android.provider.Settings;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -36,151 +37,98 @@ import java.util.List;
  * Implementation of App Widget functionality.
  */
 public class AppWidget extends AppWidgetProvider {
+    public static final String ACTION_BUTTON_REFRESH = "ACTION_BUTTON_REFRESH";
+
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        ComponentName thisWidget = new ComponentName(context, AppWidget.class);
-        int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+        for (int appWidgetId : appWidgetIds) {
+            RemoteViews remoteViews = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.app_widget);
 
-       if (SharedPref.getString(context,"appMsg").equals("1")){
-            // There may be multiple widgets active, so update all of them
-            for (int appWidgetId : appWidgetIds) {
-                Log.w("LOG", "onUpdate method called");
+            Intent clickIntent = new Intent(context.getApplicationContext(), AppWidget.class)
+                    .setAction(ACTION_BUTTON_REFRESH);
 
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, clickIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            remoteViews.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
+            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+        }
+    }
 
-                new CountDownTimer(10000, 1000) { // adjust the milli seconds here
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (intent != null) {
+            if (intent.getAction().equals(ACTION_BUTTON_REFRESH)) {
+//                Toast.makeText(context, "click event received", Toast.LENGTH_SHORT).show();
+                ///<<<<<<
+                AppWidgetManager appWidgetManager =AppWidgetManager.getInstance(context.getApplicationContext());
+                ComponentName thisWidget = new ComponentName(context,
+                        AppWidget.class);
+                int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
 
-                    public void onTick(long millisUntilFinished) {
+                for (int appWidgetId : allWidgetIds) {
+                    if(SharedPref.getString(context,"isBusy").equals("free")){
+                        new CountDownTimer(10000, 1000) { // adjust the milli seconds here
 
-//                        if (SharedPref.getString(context,"isBusy").equals("busy")){
-//
-//                            SharedPref.putString(context.getApplicationContext(),"isBusy","free");
-//
-//                            //>>>>>>>>>>>>
-//                            RemoteViews remoteViews = new RemoteViews(context
-//                                    .getApplicationContext().getPackageName(),
-//                                    R.layout.app_widget);
-//
-//                            // Set the text
-//                            remoteViews.setTextViewText(R.id.appwidget_text,
-//                                    context.getResources().getString(R.string.app_name));
-//
-//                            // Register an onClickListener
-//                            Intent clickIntent = new Intent(context.getApplicationContext(),
-//                                    AppWidget.class);
-//
-//                            clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-//                            clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
-//                                    allWidgetIds);
-//
-//                            PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, clickIntent,
-//                                    PendingIntent.FLAG_UPDATE_CURRENT);
-//                            remoteViews.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
-//                            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
-//                            cancel();
-//
-//                        }else{
+                            public void onTick(long millisUntilFinished) {
+                               if (SharedPref.getString(context,"appMsg").equals("1")){
+                                   cancel();
 
-                            SharedPref.putString(context.getApplicationContext(),"isBusy","busy");
-                            String rs = String.valueOf(millisUntilFinished / 1000);
+                                   SharedPref.putString(context.getApplicationContext(),"appMsg","0");
+                                   SharedPref.putString(context.getApplicationContext(),"isBusy","free");
+                                   RemoteViews remoteViews = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.app_widget);
 
-                            //>>>>>>>>>>>>
-                            RemoteViews remoteViews = new RemoteViews(context
-                                    .getApplicationContext().getPackageName(),
-                                    R.layout.app_widget);
+                                   // Set the text
+                                   remoteViews.setTextViewText(R.id.appwidget_text, context.getResources().getString(R.string.app_name));
 
-                            // Set the text
-                            remoteViews.setTextViewText(R.id.appwidget_text,
-                                    rs);
+                                   appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                               }else{
+                                   SharedPref.putString(context.getApplicationContext(),"isBusy","busy");
+                                   String rs = String.valueOf(millisUntilFinished / 1000);
 
-                            // Register an onClickListener
-                            Intent clickIntent = new Intent(context.getApplicationContext(),
-                                    AppWidget.class);
+                                   RemoteViews remoteViews = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.app_widget);
 
-                            clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-                            clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
-                                    allWidgetIds);
+                                   // Set the text
+                                   remoteViews.setTextViewText(R.id.appwidget_text, rs);
+                                   appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                               }
 
-                            PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, clickIntent,
-                                    PendingIntent.FLAG_UPDATE_CURRENT);
-                            remoteViews.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
-                            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
-                            //>>>>>>>>>>>
-//                        }
-
-
-
-
-//                        // Build the intent to call the service
-//                        Intent intent = new Intent(context.getApplicationContext(),
-//                                UpdateWidgetService.class);
-//                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);
-//                        intent.putExtra("msg", rs);
-//
-//                        // Update the widgets via the service
-//                        context.startService(intent);
-                    }
-
-                    public void onFinish() {
-                        SharedPref.putString(context.getApplicationContext(),"isBusy","free");
-
-                        //>>>>>>>>>>>>
-                        RemoteViews remoteViews = new RemoteViews(context
-                                .getApplicationContext().getPackageName(),
-                                R.layout.app_widget);
-
-                        // Set the text
-                        remoteViews.setTextViewText(R.id.appwidget_text,
-                                context.getResources().getString(R.string.app_name));
-
-                        // Register an onClickListener
-                        Intent clickIntent = new Intent(context.getApplicationContext(),
-                                AppWidget.class);
-
-                        clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-                        clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
-                                allWidgetIds);
-
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, clickIntent,
-                                PendingIntent.FLAG_UPDATE_CURRENT);
-                        remoteViews.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
-                        appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
-                        //>>>>>>>>>>>
-//                        // Build the intent to call the service
-//                        Intent intent = new Intent(context.getApplicationContext(),
-//                                UpdateWidgetService.class);
-//                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);
-//                        intent.putExtra("msg", "V Help");
-//                        // Update the widgets via the service
-//                        context.startService(intent);
-
-
-                        List<Contact> contactArrayList = SharedPref.getList(context,"contactArrayList");
-                        if (contactArrayList != null){
-                            if (contactArrayList.size() > 0){
-//                                Toast.makeText(context, "msg sent ", Toast.LENGTH_SHORT).show();
-                                setFinishTask(context);
-                            }else{
-                                Toast.makeText(context, "Please Add Contact first", Toast.LENGTH_SHORT).show();
                             }
-                        }else{
-                            Toast.makeText(context, "Please Add Contact first", Toast.LENGTH_SHORT).show();
-                        }
+
+                            public void onFinish() {
+                                SharedPref.putString(context.getApplicationContext(),"appMsg","0");
+                                SharedPref.putString(context.getApplicationContext(),"isBusy","free");
+                                RemoteViews remoteViews = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.app_widget);
+
+                                // Set the text
+                                remoteViews.setTextViewText(R.id.appwidget_text, context.getResources().getString(R.string.app_name));
+
+                                appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+
+                                List<Contact> contactArrayList = SharedPref.getList(context,"contactArrayList");
+                                if (contactArrayList != null){
+                                    if (contactArrayList.size() > 0){
+                                        setFinishTask(context);
+                                    }else{
+                                        Toast.makeText(context, "Please Add Contact first", Toast.LENGTH_SHORT).show();
+                                    }
+                                }else{
+                                    Toast.makeText(context, "Please Add Contact first", Toast.LENGTH_SHORT).show();
+                                }
 
 
+                            }
+                        }.start();
+                    }else if (SharedPref.getString(context,"isBusy").equals("busy")){
+                        SharedPref.putString(context,"appMsg","1");
                     }
-                }.start();
 
+                }
+                ////>>>>>>>>>>>>>
+            } else {
+                super.onReceive(context, intent);
             }
-        }else if(SharedPref.getString(context,"isBusy").equals("free")){
-            // Build the intent to call the service
-            Intent intent = new Intent(context.getApplicationContext(),
-                    UpdateWidgetService.class);
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);
-            intent.putExtra("msg", "V Help!");
-            // Update the widgets via the service
-            context.startService(intent);
         }
     }
 
