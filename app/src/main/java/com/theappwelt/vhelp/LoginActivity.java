@@ -1,12 +1,16 @@
 package com.theappwelt.vhelp;
 
 import android.Manifest;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -49,7 +53,28 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-//        finish();
+//        //<<<<<<<<<
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            AppWidgetManager mAppWidgetManager = getSystemService(AppWidgetManager.class);
+//
+//            ComponentName myProvider = new ComponentName(LoginActivity.this, AppWidget.class);
+//
+//            Bundle b = new Bundle();
+//            b.putString("ggg", "ggg");
+//            if (mAppWidgetManager.isRequestPinAppWidgetSupported()) {
+//
+//                Intent pinnedWidgetCallbackIntent = new Intent(LoginActivity.this, AppWidget.class);
+//                pinnedWidgetCallbackIntent.setAction("ACTION_REFRESH");
+//
+//                PendingIntent successCallback = PendingIntent.getBroadcast(LoginActivity.this, 0,
+//                        pinnedWidgetCallbackIntent, 0);
+//
+//                mAppWidgetManager.requestPinAppWidget(myProvider, b, successCallback);
+//            }
+//        }
+//        //////>>>>>>>>>
+
+
         //Get Firebase auth instance
         initView();
 

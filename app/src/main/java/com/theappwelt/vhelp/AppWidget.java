@@ -37,7 +37,7 @@ import java.util.List;
  * Implementation of App Widget functionality.
  */
 public class AppWidget extends AppWidgetProvider {
-    public static final String ACTION_BUTTON_REFRESH = "ACTION_BUTTON_REFRESH";
+    public static final String ON_CLICK_EVENT = "ON_CLICK_EVENT";
 
 
     @Override
@@ -47,7 +47,7 @@ public class AppWidget extends AppWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.app_widget);
 
             Intent clickIntent = new Intent(context.getApplicationContext(), AppWidget.class)
-                    .setAction(ACTION_BUTTON_REFRESH);
+                    .setAction(ON_CLICK_EVENT);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, clickIntent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
@@ -59,7 +59,7 @@ public class AppWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent != null) {
-            if (intent.getAction().equals(ACTION_BUTTON_REFRESH)) {
+            if (intent.getAction().equals(ON_CLICK_EVENT)) {
 //                Toast.makeText(context, "click event received", Toast.LENGTH_SHORT).show();
                 ///<<<<<<
                 AppWidgetManager appWidgetManager =AppWidgetManager.getInstance(context.getApplicationContext());
@@ -126,7 +126,10 @@ public class AppWidget extends AppWidgetProvider {
 
                 }
                 ////>>>>>>>>>>>>>
-            } else {
+            } else if(intent.getAction().equals("ACTION_REFRESH")){
+                Toast.makeText(context, "Widget Added on HomeScreen", Toast.LENGTH_SHORT).show();
+
+            }else {
                 super.onReceive(context, intent);
             }
         }
@@ -208,8 +211,8 @@ public class AppWidget extends AppWidgetProvider {
                 longitude = getRoundOffValue(longi);
                 Log.d("TAG 3 ",latitude+" "+longitude);
             } else {
-                Toast.makeText(context.getApplicationContext(), "Not Getting Location!!",
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context.getApplicationContext(), "Not Getting Location!!",
+//                        Toast.LENGTH_SHORT).show();
             }
 
             if (latitude.equals("0") && longitude.equals("0")){

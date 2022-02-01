@@ -2,6 +2,9 @@ package com.theappwelt.vhelp;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -106,6 +109,24 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
+//        //<<<<<<<<<
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            AppWidgetManager mAppWidgetManager = getSystemService(AppWidgetManager.class);
+//
+//            ComponentName myProvider = new ComponentName(MainActivity.this, AppWidget.class);
+//
+//            Bundle b = new Bundle();
+//            b.putString("ggg", "ggg");
+//            if (mAppWidgetManager.isRequestPinAppWidgetSupported()) {
+//                Intent pinnedWidgetCallbackIntent = new Intent(MainActivity.this, AppWidget.class);
+//                PendingIntent successCallback = PendingIntent.getBroadcast(MainActivity.this, 0,
+//                        pinnedWidgetCallbackIntent, 0);
+//
+//                mAppWidgetManager.requestPinAppWidget(myProvider, b, successCallback);
+//            }
+//        }
+//        //////>>>>>>>>>
 
         initializeView();
 
